@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="videojuego_action" model="ir.actions.act_window">
+		<field name="name">Lista videojuegos</field>
+		<field name="res_model">videojuegos.videojuego</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="genero_action" model="ir.actions.act_window">
+		<field name="name">Lista géneros</field>
+		<field name="res_model">videojuegos.genero</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="copia_action" model="ir.actions.act_window">
+		<field name="name">Lista copias</field>
+		<field name="res_model">videojuegos.copia</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+<!-- ** VIEWS MODELOS **                         -->
+
+<!-- VIDEOJUEGO                                  -->
+
+	<record id="view_videojuego_tree" model="ir.ui.view">
+		<field name="name">videojuego.tree</field>
+		<field name="model">videojuegos.videojuego</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="titulo"/>
+				<field name="fecha_salida"/>
+				<field name="clasificacion"/>
+				<field name="publisher"/>
+				<field name="genero"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="videojuego_form" model="ir.ui.view">
+		<field name="name">field_value</field>
+		<field name="model">videojuegos.videojuego</field>
+		<field name="arch" type="xml">
+			<form string="videojuego">
+				<sheet>
+					<group>
+						<field name="titulo"/>
+						<field name="fecha_salida"/>
+						<field name="clasificacion"/>
+						<field name="publisher"/>
+						<field name="genero"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+<!-- GÉNERO                                               -->
+
+	<record id="genero_view_tree" model="ir.ui.view">
+		<field name="name">genero.tree</field>
+		<field name="model">videojuegos.genero</field>
+		<field name="arch" type="xml">
+			<tree string="">
+				<field name="id"/>
+				<field name="genero"/>
+			</tree>
+		</field>
+	</record>
+	
+
+	<record id="genero_view_form" model="ir.ui.view">
+		<field name="name">field_value</field>
+		<field name="model">videojuegos.genero</field>
+		<field name="arch" type="xml">
+			<form string="genero">
+				<sheet>
+					<group>
+						<field name="id"/>
+						<field name="genero"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+<!-- COPIA                                               -->
+
+	<record id="copia_view_tree" model="ir.ui.view">
+		<field name="name">copia.tree</field>
+		<field name="model">videojuegos.copia</field>
+		<field name="arch" type="xml">
+			<tree string="">
+				<field name="id"/>
+				<field name="videojuego"/>
+				<field name="precio_compra"/>
+				<field name="precio_venta"/>
+				<field name="margen_beneficio"/>
+				<field name="es_segunda_mano"/>
+			</tree>
+		</field>
+	</record>
+	
+
+	<record id="copia_view_form" model="ir.ui.view">
+		<field name="name">field_value</field>
+		<field name="model">videojuegos.copia</field>
+		<field name="arch" type="xml">
+			<form string="copia">
+				<sheet>
+					<group>
+						<field name="id"/>
+						<field name="videojuego"/>
+						<field name="precio_compra"/>
+						<field name="precio_venta"/>
+						<field name="margen_beneficio"/>
+						<field name="es_segunda_mano"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+<!-- ** MENU ITEMS **                               -->
+
+	<menuitem
+		id="videojuegos"
+		name="Videojuegos"
+		sequence="10"/>
+	<menuitem
+		id="videojuego"
+		name="Videojuego"
+		action="videojuego_action"
+		parent="videojuegos"
+		sequence="10"/>
+	<menuitem
+		id="copia"
+		name="Copia"
+		action="copia_action"
+		parent="videojuegos"
+		sequence="10"/>
+	<menuitem
+		id="generos"
+		name="Géneros"
+		action="genero_action"
+		parent="videojuegos"
+		sequence="10"/>
+</odoo>
