@@ -3,7 +3,7 @@
 	<record id="videojuego_action" model="ir.actions.act_window">
 		<field name="name">Lista videojuegos</field>
 		<field name="res_model">videojuegos.videojuego</field>
-		<field name="view_mode">tree,form</field>
+		<field name="view_mode">tree,form,calendar</field>
 	</record>
 
 	<record id="genero_action" model="ir.actions.act_window">
@@ -51,6 +51,33 @@
 					</group>
 				</sheet>
 			</form>
+		</field>
+	</record>
+
+	<record id="videojuego_view_calendar" model="ir.ui.view">
+		<field name="name">videojuego.view.calendar</field>
+		<field name="model">videojuegos.videojuego</field>
+		<field name="arch" type="xml">
+			<calendar string="Fecha salida" date_start="fecha_salida">
+				<field name="titulo" />
+				<field name="publisher"/>
+			</calendar>
+		</field>
+	</record>
+
+	<record id="videojuego_view_search" model="ir.ui.view">
+		<field name="name">videojuego.view.search</field>
+		<field name="model">videojuegos.videojuego</field>
+		<field name="arch" type="xml">
+			<search string="videojuego">
+				<field name="titulo" />
+				<field name="clasificacion" />
+				<field name="publisher" />
+				<filter name="reservas" string="reservas" domain="[('fecha_salida', '&gt;', datetime.date.today().strftime('%Y-%m-%d'))]"/>
+				<group string="Genero">
+					<filter name="genero" string="Agrupar por Genero" context="{'group_by': 'genero'}" />
+				</group>
+			</search>
 		</field>
 	</record>
 
