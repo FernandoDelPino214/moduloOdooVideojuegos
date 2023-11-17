@@ -2,6 +2,7 @@ from odoo import api, models, fields
 
 class videojuego(models.Model):
     _name = "videojuegos.videojuego"
+    _rec_name = "titulo"
     titulo = fields.Char()
     fecha_salida = fields.Date()
     clasificacion = fields.Char()
@@ -11,6 +12,7 @@ class videojuego(models.Model):
 
 class genero(models.Model):
     _name ="videojuegos.genero"
+    _rec_name = "genero"
     genero = fields.Char()
 
 class copia(models.Model):
@@ -19,7 +21,7 @@ class copia(models.Model):
     videojuego = fields.Many2one(comodel_name="videojuegos.videojuego", string="Videojuego")
     precio_compra = fields.Float()
     precio_venta = fields.Float()
-    margen_beneficio = fields.Float(compute="_calcular_margen", store=True)
+    margen_beneficio = fields.Float(compute="_calcular_margen", store=True, string="Porcentaje de beneficio")
     es_segunda_mano = fields.Boolean()
 
     @api.depends('precio_compra', 'precio_venta')

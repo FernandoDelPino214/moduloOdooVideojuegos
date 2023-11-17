@@ -31,7 +31,7 @@
 				<field name="fecha_salida"/>
 				<field name="clasificacion"/>
 				<field name="publisher"/>
-				<field name="genero"/>
+				<field name="genero" widget="many2many_tags"/>
 			</tree>
 		</field>
 	</record>
